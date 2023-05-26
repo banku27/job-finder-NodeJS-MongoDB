@@ -25,32 +25,36 @@ class PageThree extends StatelessWidget {
           ),
         ),
         const HeightSpacer(size: 15),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          CustomOutlineBtn(
-            onTap: () {},
-            text: 'Login',
-            width: width * 0.4,
-            height: hieght * 0.06,
-            color: Color(kLight.value),
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            CustomOutlineBtn(
+              onTap: () {},
+              text: 'Login',
               width: width * 0.4,
               height: hieght * 0.06,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color(kLight.value),
-              ),
-              child: Center(
-                child: ReusableText(
-                  text: 'Sign Up',
-                  style: appstyle(16, Color(kLightBlue.value), FontWeight.w600),
+              color: Color(kLight.value),
+            ),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: width * 0.4,
+                height: hieght * 0.06,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Color(kLight.value),
+                ),
+                child: Center(
+                  child: ReusableText(
+                    text: 'Sign Up',
+                    style:
+                        appstyle(16, Color(kLightBlue.value), FontWeight.w600),
+                  ),
                 ),
               ),
             ),
-          )
-        ]),
+          ],
+        ),
         const HeightSpacer(size: 30),
         ReusableText(
           text: 'Continue as guest',
