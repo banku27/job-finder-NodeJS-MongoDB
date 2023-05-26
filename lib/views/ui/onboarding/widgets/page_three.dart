@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:job_finder/views/common/custom_outline_btn.dart';
 import 'package:job_finder/views/common/exports.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
+import 'package:job_finder/views/ui/auth/login.dart';
+import 'package:job_finder/views/ui/auth/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PageThree extends StatelessWidget {
   const PageThree({super.key});
@@ -29,14 +33,22 @@ class PageThree extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             CustomOutlineBtn(
-              onTap: () {},
+              onTap: () async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                await prefs.setBool('entrypoint', true);
+
+                Get.to(() => const LoginPage());
+              },
               text: 'Login',
               width: width * 0.4,
               height: hieght * 0.06,
               color: Color(kLight.value),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const RegistrationPage());
+              },
               child: Container(
                 width: width * 0.4,
                 height: hieght * 0.06,
