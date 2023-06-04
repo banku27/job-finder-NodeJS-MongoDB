@@ -8,6 +8,7 @@ import 'package:job_finder/views/common/custom_btn.dart';
 import 'package:job_finder/views/common/custom_textfield.dart';
 import 'package:job_finder/views/common/exports.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
+import 'package:job_finder/views/ui/auth/signup.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -111,7 +112,9 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() => const RegistrationPage());
+                      },
                       child: ReusableText(
                           text: 'Register',
                           style: appstyle(
