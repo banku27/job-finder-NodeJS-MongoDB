@@ -103,14 +103,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     hintText: 'Password',
                     obscureText: signupNotifier.isObsecure,
                     validator: (password) {
-                      if (password!.isEmpty) {
-                        return "Please enter your password";
+                      if (signupNotifier.passwordValidator(password ?? '')) {
+                        return 'Please enter a valid password with atleast one uppercase, one lowercase, one digit, a special character and length atleast 8';
                       }
-                      if (password.length < 6) {
-                        return "Password length should be atleast 6";
-                      } else {
-                        return null;
-                      }
+                      return null;
                     },
                     suffixIcon: GestureDetector(
                       onTap: () {
