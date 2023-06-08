@@ -17,7 +17,7 @@ class _BookMarkPageState extends State<BookMarkPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.h),
         child: CustomAppBar(
-          text: 'Bookmarks',
+          text: 'BookMarks',
           child: Padding(
             padding: EdgeInsets.all(12.h),
             child: const DrawerWidget(),
