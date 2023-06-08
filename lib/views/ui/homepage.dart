@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/views/common/app_bar.dart';
 import 'package:job_finder/views/common/app_style.dart';
+import 'package:job_finder/views/common/heading_widget.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/search.dart';
 import 'package:job_finder/views/ui/drawer/drawer_widget.dart';
+import 'package:job_finder/views/ui/jobs/widgets/horizontal_tile.dart';
 import 'package:job_finder/views/ui/search/searchpage.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,6 +56,28 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Get.to(() => const SearchPage());
                     },
+                  ),
+                  const HeightSpacer(size: 30),
+                  HeadingWidget(
+                    text: 'Popular Jobs',
+                    onTap: () {},
+                  ),
+                  const HeightSpacer(size: 15),
+                  SizedBox(
+                    height: hieght * 0.28,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        itemBuilder: (_, index) {
+                          return JobHorizontalTile(
+                            onTap: () {},
+                          );
+                        }),
+                  ),
+                  const HeightSpacer(size: 20),
+                  HeadingWidget(
+                    text: 'Recently Posted',
+                    onTap: () {},
                   ),
                 ],
               ),
