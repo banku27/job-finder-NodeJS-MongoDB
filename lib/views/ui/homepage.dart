@@ -7,6 +7,7 @@ import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/heading_widget.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/search.dart';
+import 'package:job_finder/views/common/vertical_tile.dart';
 import 'package:job_finder/views/ui/drawer/drawer_widget.dart';
 import 'package:job_finder/views/ui/jobs/widgets/horizontal_tile.dart';
 import 'package:job_finder/views/ui/search/searchpage.dart';
@@ -79,6 +80,8 @@ class _HomePageState extends State<HomePage> {
                     text: 'Recently Posted',
                     onTap: () {},
                   ),
+                  const HeightSpacer(size: 10),
+                  VerticalTile(),
                 ],
               ),
             ),
