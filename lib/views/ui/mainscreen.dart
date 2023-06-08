@@ -5,6 +5,8 @@ import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/controllers/exports.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/width_spacer.dart';
+import 'package:job_finder/views/ui/bookmarks/bookmarks.dart';
+import 'package:job_finder/views/ui/chat/chatpage.dart';
 import 'package:job_finder/views/ui/drawer/drawer_screen.dart';
 import 'package:job_finder/views/ui/homepage.dart';
 import 'package:provider/provider.dart';
@@ -46,9 +48,9 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         return const HomePage();
       case 1:
-        return const HomePage();
+        return const ChatsPage();
       case 2:
-        return const HomePage();
+        return const BookMarkPage();
       case 3:
         return const HomePage();
       case 4:
