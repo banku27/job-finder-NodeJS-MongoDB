@@ -78,14 +78,15 @@ class DeviceManagement extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ReusableText(
-                        text: 'Sign Out of all devices',
-                        style: appstyle(
-                            17, Color(kOrange.value), FontWeight.w600)),
+                      text: 'Sign Out of all devices',
+                      style:
+                          appstyle(17, Color(kOrange.value), FontWeight.w600),
+                    ),
                   ),
                 ),
               );
             },
-          )
+          ),
         ],
       )),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/controllers/exports.dart';
 import 'package:job_finder/views/common/exports.dart';
 import 'package:job_finder/views/ui/onboarding/widgets/page_one.dart';
