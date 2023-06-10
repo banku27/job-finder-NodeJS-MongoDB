@@ -9,6 +9,7 @@ import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/search.dart';
 import 'package:job_finder/views/common/vertical_tile.dart';
 import 'package:job_finder/views/ui/drawer/drawer_widget.dart';
+import 'package:job_finder/views/ui/jobs/job_page.dart';
 import 'package:job_finder/views/ui/jobs/widgets/horizontal_tile.dart';
 import 'package:job_finder/views/ui/search/searchpage.dart';
 
@@ -71,7 +72,11 @@ class _HomePageState extends State<HomePage> {
                         itemCount: 4,
                         itemBuilder: (_, index) {
                           return JobHorizontalTile(
-                            onTap: () {},
+                            onTap: () {
+                              Get.to(
+                                () => JobPage(id: '12', title: 'Facebook'),
+                              );
+                            },
                           );
                         }),
                   ),
@@ -81,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {},
                   ),
                   const HeightSpacer(size: 10),
-                  VerticalTile(),
+                  const VerticalTile(),
                 ],
               ),
             ),
