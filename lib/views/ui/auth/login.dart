@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/controllers/exports.dart';
+import 'package:job_finder/models/request/auth/login_model.dart';
 import 'package:job_finder/views/common/app_bar.dart';
 import 'package:job_finder/views/common/custom_btn.dart';
 import 'package:job_finder/views/common/custom_textfield.dart';
 import 'package:job_finder/views/common/exports.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/ui/auth/signup.dart';
-import 'package:job_finder/views/ui/mainscreen.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -34,17 +34,22 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Consumer<LoginNotifier>(
       builder: (context, loginNotifier, child) {
+        loginNotifier.getPrefs();
+        // log(loginNotifier.entrypoint.toString());
+        // log(loginNotifier.loggedIn.toString());
         return Scaffold(
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(50),
               child: CustomAppBar(
                 text: 'Login',
-                child: GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: const Icon(CupertinoIcons.arrow_left),
-                ),
+                child: loginNotifier.entrypoint && loginNotifier.loggedIn
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: const Icon(CupertinoIcons.arrow_left),
+                      )
+                    : const SizedBox.shrink(),
               ),
             ),
             body: Padding(
@@ -124,10 +129,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   HeightSpacer(size: 50.h),
                   CustomButton(
-                      onTap: () {
-                        Get.to(() => const MainScreen());
-                      },
-                      text: 'Login')
+                    onTap: () {
+                      if (email.text.isNotEmpty && password.text.isNotEmpty) {
+                        LoginModel model = LoginModel(
+                            email: email.text, password: password.text);
+                        loginNotifier.userLogin(model);
+                      } else {
+                        Get.snackbar(
+                          'Failed',
+                          'Please check your credentials',
+                          colorText: Color(kLight.value),
+                          backgroundColor: Colors.red,
+                          icon: const Icon(Icons.add_alert),
+                        );
+                      }
+                    },
+                    text: 'Login',
+                  )
                 ],
               ),
             ));

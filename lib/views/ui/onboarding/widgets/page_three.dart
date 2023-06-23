@@ -36,6 +36,7 @@ class PageThree extends StatelessWidget {
               onTap: () async {
                 final SharedPreferences prefs =
                     await SharedPreferences.getInstance();
+
                 await prefs.setBool('entrypoint', true);
 
                 Get.to(() => const LoginPage());

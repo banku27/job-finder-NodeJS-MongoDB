@@ -8,8 +8,7 @@ class PersonalDetails extends StatefulWidget {
 }
 
 class _PersonalDetailsState extends State<PersonalDetails> {
-  
-    TextEditingController phone = TextEditingController();
+  TextEditingController phone = TextEditingController();
   TextEditingController location = TextEditingController();
   TextEditingController skill0 = TextEditingController();
   TextEditingController skill1 = TextEditingController();
@@ -29,9 +28,12 @@ class _PersonalDetailsState extends State<PersonalDetails> {
     super.dispose();
   }
 
-  
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Update profile'),
+      ),
+    );
   }
 }

@@ -1,5 +1,6 @@
 class Config {
-  static const apiUrl = "https://job-finder-backend-node-js-uuc9.vercel.app/";
+  static const apiUrl =
+      "job-finder-backend-node-js-uuc9-f4df7q6bw-banku27.vercel.app";
   static const String loginUrl = "/api/login";
   static const String signupUrl = "/api/register";
   static const String jobs = "/api/jobs";
