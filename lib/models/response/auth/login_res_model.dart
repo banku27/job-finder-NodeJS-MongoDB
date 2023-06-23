@@ -1,25 +1,60 @@
 import 'dart:convert';
 
-LoginResponseModel loginResponseModelFromJson(String str) => LoginResponseModel.fromJson(json.decode(str));
+// To parse this JSON data, do
+//
+//     final loginResponseModel = loginResponseModelFromJson(jsonString);
 
-String loginResponseModelToJson(LoginResponseModel data) => json.encode(data.toJson());
+LoginResponseModel loginResponseModelFromJson(String str) =>
+    LoginResponseModel.fromJson(json.decode(str));
+
+String loginResponseModelToJson(LoginResponseModel data) =>
+    json.encode(data.toJson());
 
 class LoginResponseModel {
-    LoginResponseModel({
-        required this.id,
-        required this.userToken,
-    });
+  String id;
+  String username;
+  String email;
+  bool isAdmin;
+  bool isAgent;
+  List<String> skills;
+  String profile;
+  DateTime updatedAt;
+  String userToken;
 
-    final String id;
-    final String userToken;
+  LoginResponseModel({
+    required this.id,
+    required this.username,
+    required this.email,
+    required this.isAdmin,
+    required this.isAgent,
+    required this.skills,
+    required this.profile,
+    required this.updatedAt,
+    required this.userToken,
+  });
 
-    factory LoginResponseModel.fromJson(Map<String, dynamic> json) => LoginResponseModel(
+  factory LoginResponseModel.fromJson(Map<String, dynamic> json) =>
+      LoginResponseModel(
         id: json["_id"],
+        username: json["username"],
+        email: json["email"],
+        isAdmin: json["isAdmin"],
+        isAgent: json["isAgent"],
+        skills: List<String>.from(json["skills"].map((x) => x)),
+        profile: json["profile"],
+        updatedAt: DateTime.parse(json["updatedAt"]),
         userToken: json["userToken"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "_id": id,
+        "username": username,
+        "email": email,
+        "isAdmin": isAdmin,
+        "isAgent": isAgent,
+        "skills": List<dynamic>.from(skills.map((x) => x)),
+        "profile": profile,
+        "updatedAt": updatedAt.toIso8601String(),
         "userToken": userToken,
-    };
+      };
 }

@@ -1,3 +1,4 @@
+import 'package:draggable_fab/draggable_fab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:job_finder/views/ui/drawer/drawer_widget.dart';
@@ -20,6 +21,12 @@ class ChatsPage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: DraggableFab(
+          child: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.white,
+        child: Icon(Icons.chat),
+      )),
     );
   }
 }
