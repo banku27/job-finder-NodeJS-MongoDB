@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:http/http.dart' as https;
 import 'package:job_finder/models/request/auth/login_model.dart';
 import 'package:job_finder/models/request/auth/profile_update_model.dart';
+import 'package:job_finder/models/request/auth/signup_model.dart';
 import 'package:job_finder/models/response/auth/login_res_model.dart';
 import 'package:job_finder/services/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,6 +58,24 @@ class AuthHelper {
     log(jsonEncode(model));
     if (response.statusCode == 200) {
       log(response.body.toString());
+      return true;
+    } else {
+      log(response.body.toString());
+      return false;
+    }
+  }
+
+  static Future<bool> signUp(SignupModel model) async {
+    Map<String, String> requestHeaders = {"Content-Type": 'application/json'};
+    var url = Uri.https(Config.apiUrl, Config.signupUrl);
+    log(url.toString());
+    log(model.toString());
+    var response = await client.post(url,
+        headers: requestHeaders, body: jsonEncode(model));
+
+    log(jsonEncode(model));
+    log(response.statusCode.toString());
+    if (response.statusCode == 201) {
       return true;
     } else {
       log(response.body.toString());

@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/firebase_options.dart';
 import 'package:job_finder/views/ui/auth/login.dart';
-import 'package:job_finder/views/ui/auth/update_user.dart';
 import 'package:job_finder/views/ui/mainscreen.dart';
 import 'package:job_finder/views/ui/onboarding/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'controllers/exports.dart';
 import 'views/common/exports.dart';
 

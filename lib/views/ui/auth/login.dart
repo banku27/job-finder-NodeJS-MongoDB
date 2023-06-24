@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
-                        Get.to(() => const RegistrationPage());
+                        Get.offAll(() => const RegistrationPage());
                       },
                       child: ReusableText(
                           text: 'Register',
