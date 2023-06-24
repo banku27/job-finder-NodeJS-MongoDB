@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:job_finder/firebase_options.dart';
 import 'package:job_finder/views/ui/auth/login.dart';
 import 'package:job_finder/views/ui/auth/update_user.dart';
 import 'package:job_finder/views/ui/mainscreen.dart';
@@ -14,7 +16,7 @@ Widget defaultHome = const OnBoardingScreen();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final entrypoint = prefs.getBool('entrypoint') ?? false;
   final loggedIn = prefs.getBool('loggedIn') ?? false;

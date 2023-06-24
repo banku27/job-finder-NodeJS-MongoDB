@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "228163424466",
+    "project_id": "job-finder-bd047",
+    "storage_bucket": "job-finder-bd047.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:228163424466:android:adbfb1efa7e7642d469d0b",
+        "android_client_info": {
+          "package_name": "com.example.job_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "228163424466-vu13f2gsc1li6a8vhi7hkhuobgfvsj6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAA_txnQiOp8F-4qZQRMaCm2cL7EmQH80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "228163424466-vu13f2gsc1li6a8vhi7hkhuobgfvsj6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

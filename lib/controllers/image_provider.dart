@@ -1,27 +1,31 @@
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:job_finder/constants/app_constants.dart';
+import 'package:uuid/uuid.dart';
 
 class ImageUpoader extends ChangeNotifier {
+  var uuid = Uuid();
   final ImagePicker _picker = ImagePicker();
 
-  List<String> imageUrl = [];
-
+  String? imageUrl;
+  String? imagePath;
+  List<String> imageFil = [];
   void pickImage() async {
     // ignore: no_leading_underscores_for_local_identifiers
-
     XFile? _imageFile = await _picker.pickImage(source: ImageSource.gallery);
-
+    // Crop the image
+    _imageFile = await cropImage(_imageFile!);
     if (_imageFile != null) {
-      // Crop the image
-
-      _imageFile = await cropImage(_imageFile);
-      if (_imageFile != null) {
-        imageUrl.add(_imageFile.path);
-      } else {
-        return;
-      }
+      imageFil.add(_imageFile.path);
+      imageUpload(_imageFile);
+      imagePath = _imageFile.path;
+    } else {
+      return;
     }
   }
 
@@ -54,10 +58,15 @@ class ImageUpoader extends ChangeNotifier {
     }
   }
 
-  //  imageUpload() async {
-  //   final ref =
-  //       FirebaseStorage.instance.ref().child('job_finder').child('${uid}jpg');
-  //   await ref.putFile(imageUrl[0]);
-  //   imageUrl = await ref.getDownloadURL();
-  // }
+  imageUpload(XFile upload) async {
+    File image = File(upload.path);
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('job_finder')
+        .child('${uuid.v1()}.jpg');
+    await ref.putFile(image);
+    imageUrl = await ref.getDownloadURL();
+    log(imageUrl.toString());
+    return imageUrl;
+  }
 }

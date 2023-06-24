@@ -11,6 +11,7 @@ import '../views/ui/mainscreen.dart';
 class LoginNotifier extends ChangeNotifier {
   bool _obscureText = true;
   final loginFormKey = GlobalKey<FormState>();
+  final profileFormKey = GlobalKey<FormState>();
   bool get obscureText => _obscureText;
   set obscureText(bool newState) {
     _obscureText = newState;
@@ -47,6 +48,16 @@ class LoginNotifier extends ChangeNotifier {
 
   bool validateAndSave() {
     final form = loginFormKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool profileValidation() {
+    final form = profileFormKey.currentState;
     if (form!.validate()) {
       form.save();
       return true;
