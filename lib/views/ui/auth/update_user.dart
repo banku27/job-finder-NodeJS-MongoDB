@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:job_finder/controllers/exports.dart';
+import 'package:job_finder/models/request/auth/profile_update_model.dart';
 import 'package:job_finder/views/common/custom_btn.dart';
 import 'package:job_finder/views/common/custom_textfield.dart';
 import 'package:job_finder/views/common/exports.dart';
@@ -84,6 +86,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                 ),
                 const HeightSpacer(size: 20),
                 Form(
+                  // key: loginNotifier.profileFormKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -187,9 +190,37 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                         },
                       ),
                       const HeightSpacer(size: 20),
-                      CustomButton(
-                        onTap: () {},
-                        text: 'Update Profile',
+                      Consumer<ImageUpoader>(
+                        builder: (context, imageUploader, child) {
+                          return CustomButton(
+                            onTap: () {
+                              if (imageUploader.imageFil.isEmpty &&
+                                  imageUploader.imageUrl == null) {
+                                Get.snackbar(
+                                  'Image Missing',
+                                  'Please upload an image to proceed.',
+                                  colorText: Color(kLight.value),
+                                  backgroundColor: Color(kLightBlue.value),
+                                  icon: const Icon(Icons.add_alert),
+                                );
+                              } else {
+                                ProfileUpdateReq model = ProfileUpdateReq(
+                                    location: location.text,
+                                    phone: phone.text,
+                                    profile: imageUploader.imageUrl.toString(),
+                                    skills: [
+                                      skill0.text,
+                                      skill1.text,
+                                      skill2.text,
+                                      skill3.text,
+                                      skill4.text,
+                                    ]);
+                                loginNotifier.updateProfile(model);
+                              }
+                            },
+                            text: 'Update Profile',
+                          );
+                        },
                       )
                     ],
                   ),

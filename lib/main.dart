@@ -53,16 +53,15 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return GetMaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Dbestech job_finder',
-              theme: ThemeData(
-                scaffoldBackgroundColor: Color(kLight.value),
-                iconTheme: IconThemeData(color: Color(kDark.value)),
-                primarySwatch: Colors.grey,
-              ),
-              home: PersonalDetails()
-              // defaultHome,
-              );
+            debugShowCheckedModeBanner: false,
+            title: 'Dbestech job_finder',
+            theme: ThemeData(
+              scaffoldBackgroundColor: Color(kLight.value),
+              iconTheme: IconThemeData(color: Color(kDark.value)),
+              primarySwatch: Colors.grey,
+            ),
+            home: defaultHome,
+          );
         });
   }
 }

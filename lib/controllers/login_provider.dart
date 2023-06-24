@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:job_finder/models/request/auth/profile_update_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/app_constants.dart';
@@ -78,6 +79,31 @@ class LoginNotifier extends ChangeNotifier {
           'Please check your credentials',
           colorText: Color(kLight.value),
           backgroundColor: Colors.red,
+          icon: const Icon(Icons.add_alert),
+        );
+      }
+    });
+  }
+
+  updateProfile(ProfileUpdateReq model) async {
+    AuthHelper.updateProfile(model).then((response) {
+      if (response) {
+        Get.snackbar(
+          'Profile Updated',
+          'Enjoy your search for jobs',
+          colorText: Color(kLight.value),
+          backgroundColor: Color(kLightBlue.value),
+          icon: const Icon(Icons.add_alert),
+        );
+        Future.delayed(const Duration(seconds: 3)).then((value) => Get.offAll(
+              () => const MainScreen(),
+            ));
+      } else {
+        Get.snackbar(
+          'Update Failed',
+          'Please try again',
+          colorText: Color(kLight.value),
+          backgroundColor: Color(kOrange.value),
           icon: const Icon(Icons.add_alert),
         );
       }
