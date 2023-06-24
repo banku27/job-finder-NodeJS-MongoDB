@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:job_finder/views/ui/auth/login.dart';
+import 'package:job_finder/views/ui/auth/update_user.dart';
 import 'package:job_finder/views/ui/mainscreen.dart';
 import 'package:job_finder/views/ui/onboarding/onboarding_screen.dart';
 import 'package:provider/provider.dart';
@@ -50,15 +51,16 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Dbestech job_finder',
-            theme: ThemeData(
-              scaffoldBackgroundColor: Color(kLight.value),
-              iconTheme: IconThemeData(color: Color(kDark.value)),
-              primarySwatch: Colors.grey,
-            ),
-            home: defaultHome,
-          );
+              debugShowCheckedModeBanner: false,
+              title: 'Dbestech job_finder',
+              theme: ThemeData(
+                scaffoldBackgroundColor: Color(kLight.value),
+                iconTheme: IconThemeData(color: Color(kDark.value)),
+                primarySwatch: Colors.grey,
+              ),
+              home: PersonalDetails()
+              // defaultHome,
+              );
         });
   }
 }
