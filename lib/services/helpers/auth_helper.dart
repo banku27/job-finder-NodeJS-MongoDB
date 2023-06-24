@@ -6,6 +6,7 @@ import 'package:job_finder/models/request/auth/login_model.dart';
 import 'package:job_finder/models/request/auth/profile_update_model.dart';
 import 'package:job_finder/models/request/auth/signup_model.dart';
 import 'package:job_finder/models/response/auth/login_res_model.dart';
+import 'package:job_finder/models/response/auth/profile_model.dart';
 import 'package:job_finder/services/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -80,6 +81,27 @@ class AuthHelper {
     } else {
       log(response.body.toString());
       return false;
+    }
+  }
+
+  static Future<ProfileRes> getProfile() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    Map<String, String> requestHeaders = {
+      "Content-Type": 'application/json',
+      "token": "Bearer $token"
+    };
+    var url = Uri.https(Config.apiUrl, Config.profileUrl);
+    log(url.toString());
+    var response = await client.get(url, headers: requestHeaders);
+
+    if (response.statusCode == 200) {
+      log(response.body.toString());
+      var profile = profileResFromJson(response.body);
+      return profile;
+    } else {
+      log(response.body.toString());
+      throw Exception("failed to get the profile");
     }
   }
 }
