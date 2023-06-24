@@ -68,8 +68,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       child: CachedNetworkImage(
                                           width: 80.w,
                                           height: 100.h,
-                                          imageUrl:
-                                              'https://images.indianexpress.com/2021/08/money-heist-professor-1200.jpg'),
+                                          imageUrl: userData!.profile),
                                     ),
                                     const WidthSpacer(size: 20),
                                     Column(
@@ -79,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         ReusableText(
-                                          text: 'Pankaj',
+                                          text: userData.username,
                                           style: appstyle(
                                               20,
                                               Color(kDark.value),
@@ -93,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             ),
                                             const WidthSpacer(size: 5),
                                             ReusableText(
-                                              text: 'Ahmedabad',
+                                              text: userData.location,
                                               style: appstyle(
                                                   16,
                                                   Color(kDarkGrey.value),
@@ -186,7 +185,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: ReusableText(
-                                text: 'pankajparihar123321@gmail.com',
+                                text: userData.email,
                                 style: appstyle(
                                     16, Color(kDark.value), FontWeight.w600),
                               ),
@@ -208,7 +207,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   //   height: 22.h,
                                   // ),
                                   ReusableText(
-                                    text: '+91-9360248019',
+                                    text: userData.phone,
                                     style: appstyle(16, Color(kDark.value),
                                         FontWeight.w600),
                                   ),
@@ -239,7 +238,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     child: ListView.builder(
                                       physics:
                                           const NeverScrollableScrollPhysics(),
-                                      itemCount: userData!.skills.length,
+                                      itemCount: userData.skills.length,
                                       itemBuilder: (context, index) {
                                         return Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -252,7 +251,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             child: Align(
                                               alignment: Alignment.topLeft,
                                               child: ReusableText(
-                                                text: skills[index],
+                                                text: userData.skills[index],
                                                 style: appstyle(
                                                     16,
                                                     Color(kDark.value),
