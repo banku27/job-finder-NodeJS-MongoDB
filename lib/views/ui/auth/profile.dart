@@ -2,12 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get.dart';
 import 'package:job_finder/constants/app_constants.dart';
 import 'package:job_finder/controllers/exports.dart';
 import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/reusable_text.dart';
 import 'package:job_finder/views/common/width_spacer.dart';
+import 'package:job_finder/views/ui/auth/profile_update.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/response/auth/profile_model.dart';
@@ -104,11 +106,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {},
+                                InkWell(
+                                  onTap: () {
+                                    profile = userData.skills;
+                                    Get.to(() => const PorfileUpdate());
+                                  },
                                   child: const Icon(
                                     Feather.edit,
-                                    size: 18,
+                                    size: 22,
                                   ),
                                 )
                               ],

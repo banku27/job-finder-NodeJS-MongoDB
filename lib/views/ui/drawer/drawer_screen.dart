@@ -79,7 +79,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   }
 
   Widget drawerItem(IconData icon, String text, int index, Color color) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         widget.indexSetter(index);
       },
