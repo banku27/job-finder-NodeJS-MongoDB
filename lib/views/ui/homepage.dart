@@ -8,6 +8,7 @@ import 'package:job_finder/views/common/app_style.dart';
 import 'package:job_finder/views/common/heading_widget.dart';
 import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/search.dart';
+import 'package:job_finder/views/common/vertical_shimmer.dart';
 import 'package:job_finder/views/common/vertical_tile.dart';
 import 'package:job_finder/views/ui/drawer/drawer_widget.dart';
 import 'package:job_finder/views/ui/jobs/job_page.dart';
@@ -48,6 +49,7 @@ class _HomePageState extends State<HomePage> {
         body: Consumer<JobsNotifier>(
           builder: (context, jobsNotifier, child) {
             jobsNotifier.getJobs();
+            jobsNotifier.getRecentJobs();
             return SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -108,19 +110,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const HeightSpacer(size: 10),
                       FutureBuilder(
-                          future: jobsNotifier.jobsList,
+                          future: jobsNotifier.recentJobs,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const HorizontalShimmer();
+                              return const VerticalShimmer();
                             } else if (snapshot.hasError) {
                               return Text('Error ${snapshot.error}');
                             } else {
                               final jobs = snapshot.data;
-                              return Container();
+                              return VerticalTile(
+                                job: jobs!,
+                              );
                             }
                           }),
-                      const VerticalTile(),
                     ],
                   ),
                 ),
