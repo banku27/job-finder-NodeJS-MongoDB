@@ -107,6 +107,19 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {},
                       ),
                       const HeightSpacer(size: 10),
+                      FutureBuilder(
+                          future: jobsNotifier.jobsList,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const HorizontalShimmer();
+                            } else if (snapshot.hasError) {
+                              return Text('Error ${snapshot.error}');
+                            } else {
+                              final jobs = snapshot.data;
+                              return Container();
+                            }
+                          }),
                       const VerticalTile(),
                     ],
                   ),
