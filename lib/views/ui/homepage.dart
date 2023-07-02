@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                                           onTap: () {
                                             Get.to(
                                               () => JobPage(
-                                                  id: '12',
+                                                  id: jobs[index].id,
                                                   title: jobs[index].company),
                                             );
                                           },
