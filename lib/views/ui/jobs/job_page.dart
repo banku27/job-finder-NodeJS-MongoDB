@@ -97,14 +97,14 @@ class _JobPageState extends State<JobPage> {
                                           CustomOutlineBtn(
                                             width: width * 0.26,
                                             height: hieght * 0.04,
-                                            text: 'Full-Time',
+                                            text: job.contract,
                                             color2: Color(kLight.value),
                                             color: Color(kOrange.value),
                                           ),
                                           Row(
                                             children: [
                                               ReusableText(
-                                                  text: '10k',
+                                                  text: job.salary,
                                                   style: appstyle(
                                                       22,
                                                       Color(kDark.value),
@@ -112,7 +112,7 @@ class _JobPageState extends State<JobPage> {
                                               SizedBox(
                                                 width: width * 0.2,
                                                 child: ReusableText(
-                                                    text: '/monthly',
+                                                    text: '/${job.period}',
                                                     style: appstyle(
                                                         22,
                                                         Color(kDark.value),
@@ -133,7 +133,7 @@ class _JobPageState extends State<JobPage> {
                                       22, Color(kDark.value), FontWeight.w600)),
                               const HeightSpacer(size: 10),
                               Text(
-                                desc,
+                                job.description,
                                 textAlign: TextAlign.justify,
                                 maxLines: 8,
                                 style: appstyle(16, Color(kDarkGrey.value),
@@ -150,10 +150,10 @@ class _JobPageState extends State<JobPage> {
                                 height: hieght * 0.6,
                                 child: ListView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: requirements.length,
+                                  itemCount: job.requirements.length,
                                   itemBuilder: (context, index) {
                                     String bullet = "\u2022";
-                                    final req = requirements[index];
+                                    final req = job.requirements[index];
                                     return Text(
                                       "$bullet $req\n",
                                       maxLines: 4,
