@@ -12,6 +12,7 @@ import 'package:job_finder/views/common/vertical_shimmer.dart';
 import 'package:job_finder/views/common/vertical_tile.dart';
 import 'package:job_finder/views/ui/drawer/drawer_widget.dart';
 import 'package:job_finder/views/ui/jobs/job_page.dart';
+import 'package:job_finder/views/ui/jobs/jobs_list.dart';
 import 'package:job_finder/views/ui/jobs/widgets/horizontal_shimmer.dart';
 import 'package:job_finder/views/ui/jobs/widgets/horizontal_tile.dart';
 import 'package:job_finder/views/ui/search/searchpage.dart';
@@ -71,7 +72,9 @@ class _HomePageState extends State<HomePage> {
                       const HeightSpacer(size: 30),
                       HeadingWidget(
                         text: 'Popular Jobs',
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(() => const JobListPage());
+                        },
                       ),
                       const HeightSpacer(size: 15),
                       SizedBox(
