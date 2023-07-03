@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get.dart';
 import 'package:job_finder/models/response/jobs/jobs_response.dart';
 import 'package:job_finder/views/common/exports.dart';
 import 'package:job_finder/views/common/width_spacer.dart';
+import 'package:job_finder/views/ui/jobs/job_page.dart';
 
 class VerticalTileWidget extends StatelessWidget {
   const VerticalTileWidget({super.key, required this.job});
@@ -14,7 +16,9 @@ class VerticalTileWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 12.h),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Get.to(() => JobPage(title: job.company, id: job.id));
+        },
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
           height: hieght * 0.15,
@@ -48,7 +52,7 @@ class VerticalTileWidget extends StatelessWidget {
                             child: ReusableText(
                               text: job.title,
                               style: appstyle(
-                                  20, Color(kDark.value), FontWeight.w600),
+                                  20, Color(kDarkGrey.value), FontWeight.w600),
                             ),
                           ),
                         ],
@@ -60,11 +64,26 @@ class VerticalTileWidget extends StatelessWidget {
                           Ionicons.chevron_forward,
                           color: Color(kOrange.value),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
               ),
+              Padding(
+                padding: EdgeInsets.only(left: 75.w),
+                child: Row(
+                  children: [
+                    ReusableText(
+                        text: job.salary,
+                        style:
+                            appstyle(18, Color(kDark.value), FontWeight.w600)),
+                    ReusableText(
+                        text: '/${job.period}',
+                        style:
+                            appstyle(18, Color(kDark.value), FontWeight.w600))
+                  ],
+                ),
+              )
             ],
           ),
         ),
