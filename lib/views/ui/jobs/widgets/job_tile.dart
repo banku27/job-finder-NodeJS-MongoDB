@@ -57,7 +57,7 @@ class VerticalTileWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const WidthSpacer(size: 20),
+                      const WidthSpacer(size: 15),
                       CircleAvatar(
                         radius: 18,
                         child: Icon(

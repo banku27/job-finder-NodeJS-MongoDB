@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:get/get.dart';
 import 'package:job_finder/models/response/jobs/jobs_response.dart';
 import 'package:job_finder/views/common/exports.dart';
 import 'package:job_finder/views/common/width_spacer.dart';
+import 'package:job_finder/views/ui/jobs/job_page.dart';
 
 class VerticalTile extends StatelessWidget {
   final void Function()? onTap;
@@ -13,7 +15,11 @@ class VerticalTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onTap,
+        onTap: () {
+          Get.to(
+            () => JobPage(title: job.company, id: job.id),
+          );
+        },
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           height: hieght * 0.15,
