@@ -25,11 +25,12 @@ class BookMarkHelper {
       body: jsonEncode(model.toJson()),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       log(response.body.toString());
       String bookmarkId = bookmarkReqResModelFromJson(response.body).id;
       return [true, bookmarkId];
     } else {
+      log(response.body.toString());
       return [false];
       // log(response.body.toString());
       // throw Exception("failed to get the profile");

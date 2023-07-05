@@ -12,6 +12,8 @@ import 'package:job_finder/views/common/height_spacer.dart';
 import 'package:job_finder/views/common/reusable_text.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/request/bookmarks/bookmarks_model.dart';
+
 class JobPage extends StatefulWidget {
   final String title;
   final String id;
@@ -33,9 +35,24 @@ class _JobPageState extends State<JobPage> {
               child: CustomAppBar(
                 text: widget.title,
                 actions: [
-                  Padding(
-                    padding: EdgeInsets.only(right: 12.w),
-                    child: const Icon(Entypo.bookmark),
+                  Consumer<BookMarkNotifier>(
+                    builder: (context, bookmarkNotifier, child) {
+                      bookmarkNotifier.loadJob();
+                      print(bookmarkNotifier.jobs);
+                      return InkWell(
+                        onTap: () {
+                          BookMarkReqResModel model =
+                              BookMarkReqResModel(job: widget.id);
+                          bookmarkNotifier.addBookmark(model, widget.id);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 12.w),
+                          child: !bookmarkNotifier.jobs.contains(widget.id)
+                              ? const Icon(Fontisto.bookmark)
+                              : const Icon(Entypo.bookmark),
+                        ),
+                      );
+                    },
                   )
                 ],
                 child: GestureDetector(
