@@ -41,9 +41,14 @@ class _JobPageState extends State<JobPage> {
                       print(bookmarkNotifier.jobs);
                       return InkWell(
                         onTap: () {
-                          BookMarkReqResModel model =
-                              BookMarkReqResModel(job: widget.id);
-                          bookmarkNotifier.addBookmark(model, widget.id);
+                          if (bookmarkNotifier.jobs.contains(widget.id)) {
+                            //delete
+                            bookmarkNotifier.deleteBookmark(widget.id);
+                          } else {
+                            BookMarkReqResModel model =
+                                BookMarkReqResModel(job: widget.id);
+                            bookmarkNotifier.addBookmark(model, widget.id);
+                          }
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: 12.w),

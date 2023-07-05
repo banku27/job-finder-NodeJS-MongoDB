@@ -26,11 +26,20 @@ class BookMarkNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> removeJob(String jobId) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    _jobs.remove(jobId);
+    prefs.setStringList('jobId', _jobs);
+    notifyListeners();
+  }
+
   Future<void> loadJob() async {
     final prefs = await SharedPreferences.getInstance();
     final jobs = prefs.getStringList('jobId');
     if (jobs != null) {
       _jobs = jobs;
+      notifyListeners();
     }
   }
 
@@ -49,6 +58,30 @@ class BookMarkNotifier extends ChangeNotifier {
         log(response.toString());
         Get.snackbar(
           'Failed to add Bookmark',
+          'Please try again',
+          colorText: Color(kLight.value),
+          backgroundColor: Colors.red,
+          icon: const Icon(Icons.bookmark_add),
+        );
+      }
+    });
+  }
+
+  deleteBookmark(String jobId) {
+    BookMarkHelper.deleteBookmark(jobId).then((response) {
+      if (response) {
+        removeJob(jobId);
+        Get.snackbar(
+          'Bookmark Removed Successfully',
+          'Please check your bookmarks',
+          colorText: Color(kLight.value),
+          backgroundColor: Color(kOrange.value),
+          icon: const Icon(Icons.bookmark_remove),
+        );
+      } else if (!response) {
+        log(response.toString());
+        Get.snackbar(
+          'Failed to remove Bookmark',
           'Please try again',
           colorText: Color(kLight.value),
           backgroundColor: Colors.red,
