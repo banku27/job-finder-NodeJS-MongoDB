@@ -56,11 +56,12 @@ class _SearchPageState extends State<SearchPage> {
                     return const SearchLoading(text: 'Job Not Found');
                   } else {
                     return ListView.builder(
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          final jobs = snapshot.data;
-                          return VerticalTileWidget(job: jobs![index]);
-                        });
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        final jobs = snapshot.data;
+                        return VerticalTileWidget(job: jobs![index]);
+                      },
+                    );
                   }
                 })
             : const SearchLoading(text: 'Start searching for jobs'),

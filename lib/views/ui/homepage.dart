@@ -78,34 +78,36 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const HeightSpacer(size: 15),
                       SizedBox(
-                          height: hieght * 0.28,
-                          child: FutureBuilder(
-                              future: jobsNotifier.jobsList,
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return const HorizontalShimmer();
-                                } else if (snapshot.hasError) {
-                                  return Text('Error ${snapshot.error}');
-                                } else {
-                                  final jobs = snapshot.data;
-                                  return ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: jobs!.length,
-                                      itemBuilder: (_, index) {
-                                        return JobHorizontalTile(
-                                          job: jobs[index],
-                                          onTap: () {
-                                            Get.to(
-                                              () => JobPage(
-                                                  id: jobs[index].id,
-                                                  title: jobs[index].company),
-                                            );
-                                          },
+                        height: hieght * 0.28,
+                        child: FutureBuilder(
+                          future: jobsNotifier.jobsList,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const HorizontalShimmer();
+                            } else if (snapshot.hasError) {
+                              return Text('Error ${snapshot.error}');
+                            } else {
+                              final jobs = snapshot.data;
+                              return ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: jobs!.length,
+                                  itemBuilder: (_, index) {
+                                    return JobHorizontalTile(
+                                      job: jobs[index],
+                                      onTap: () {
+                                        Get.to(
+                                          () => JobPage(
+                                              id: jobs[index].id,
+                                              title: jobs[index].company),
                                         );
-                                      });
-                                }
-                              })),
+                                      },
+                                    );
+                                  });
+                            }
+                          },
+                        ),
+                      ),
                       const HeightSpacer(size: 20),
                       HeadingWidget(
                         text: 'Recently Posted',
